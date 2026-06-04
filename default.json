@@ -64,6 +64,16 @@
         "patch"
       ],
       "groupName": "go modules (non-major)"
+    },
+    {
+      "description": "Do not pin first-party claude-config reusable workflows to a digest — same org/trust boundary, and pinning only adds cross-repo bump churn. Callers track @main directly.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchPackageNames": [
+        "ambix-ai/claude-config"
+      ],
+      "pinDigests": false
     }
   ]
 }
