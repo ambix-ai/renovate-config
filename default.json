@@ -66,6 +66,19 @@
       "groupName": "go modules (non-major)"
     },
     {
+      "description": "Batch the renovate-config-validator pre-commit hook weekly. renovatebot/pre-commit-hooks mirrors the near-daily Renovate release train, so with no schedule it produced a self-merging PR most days (only email-service pins it). One grouped PR on Mondays instead. minimumReleaseAge (3 days) and the infra-automerge rule above still apply.",
+      "matchManagers": [
+        "pre-commit"
+      ],
+      "matchPackageNames": [
+        "renovatebot/pre-commit-hooks"
+      ],
+      "groupName": "renovate pre-commit hook",
+      "schedule": [
+        "before 9am on monday"
+      ]
+    },
+    {
       "description": "Do not pin first-party claude-config reusable workflows to a digest — same org/trust boundary, and pinning only adds cross-repo bump churn. Callers track @main directly.",
       "matchManagers": [
         "github-actions"
