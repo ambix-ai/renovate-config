@@ -87,6 +87,16 @@
         "ambix-ai/claude-config"
       ],
       "pinDigests": false
+    },
+    {
+      "description": "Group the whole GraphQL stack (graphql + graphql-request + graphql-tag + every @graphql-codegen/* plugin) into one PR. A graphql major (e.g. v17) cannot resolve until the codegen toolchain and graphql-request peer-accept it, so a lone graphql bump just sits red. Grouping puts the set in one branch that Renovate re-tests whenever ANY member updates — so when the lagging packages (graphql-request, @graphql-codegen/typescript-graphql-request) finally ship a compatible release, the same PR rebases and its CI (npm ci + codegen + typecheck) re-runs and goes green only once the versions are mutually compatible. The PR self-greens when the ecosystem aligns — no manual version pin to track and lift. Used by the Nuxt apps (web, admin).",
+      "matchPackageNames": [
+        "graphql",
+        "graphql-request",
+        "graphql-tag",
+        "@graphql-codegen/**"
+      ],
+      "groupName": "graphql stack"
     }
   ]
 }
