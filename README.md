@@ -35,6 +35,7 @@ dashboard, and uses semantic-commit prefixes. On top of that:
 | `postUpdateOptions` | `gomodTidy`, `gomodUpdateImportPaths` | keep `go.mod`/`go.sum` clean on Go bumps |
 | `pre-commit` manager | enabled | Renovate keeps `.pre-commit-config.yaml` current |
 | `kubernetes` manager | matches `k8s/**/*.ya?ml` | manifests get image/chart updates |
+| `customManagers` (regex) | `node-version:` input to claude-config `ci-npm.yml` | caller CI Node major moves in the same PR as the Dockerfile `node` bump |
 
 ### Automerge policy
 

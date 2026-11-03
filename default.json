@@ -27,6 +27,21 @@
   "pre-commit": {
     "enabled": true
   },
+  "customManagers": [
+    {
+      "description": "Bump the node-version input passed to the shared claude-config ci-npm.yml reusable workflow. The github-actions manager only sees setup-node with: blocks, so this caller input was left behind on Node majors (web #440 / admin #180 bumped the Dockerfile to 26 while CI checks still ran on 24). Datasource node-version + depName node puts it in the same Node PR as the Dockerfile bump.",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/[^/]+\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "uses: ambix-ai/claude-config/\\.github/workflows/ci-npm\\.yml@\\S+\\s+with:(?:\\n[ \\t]+[\\w-]+:.*)*?\\n[ \\t]+node-version: \"(?<currentValue>[^\"]+)\""
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node"
+    }
+  ],
   "packageRules": [
     {
       "description": "Automerge low-risk infra updates (minor/patch/digest)",
